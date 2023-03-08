@@ -30,7 +30,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      HUGO_VERSION: 0.108.0
+      HUGO_VERSION: 0.111.2
     steps:
       - name: Install Hugo CLI
         run: |
@@ -38,11 +38,12 @@ jobs:
           && sudo dpkg -i ${{ runner.temp }}/hugo.deb
       - name: Install Dart Sass Embedded
         run: sudo snap install dart-sass-embedded
-      - name: Install PostCSS
-        run: |
-          npm install -g postcss-cli
-          npm install autoprefixer
-          npm audit fix
+
+      - name: Setup NodeJS 19
+        uses: actions/setup-node@v3
+        with:
+          node-version: 19
+
       - name: Checkout
         uses: actions/checkout@v3
         with:
@@ -50,6 +51,8 @@ jobs:
       - name: Setup Pages
         id: pages
         uses: actions/configure-pages@v3
+      - name: Install PostCSS
+        run: npm install postcss-cli autoprefixer
       - name: Install Node.js dependencies
         run: "[[ -f package-lock.json || -f npm-shrinkwrap.json ]] && npm ci || true"
       - name: Build with Hugo
