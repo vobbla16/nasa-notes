@@ -13,7 +13,7 @@ enableGitInfo: true
 pygmentsCodeFences: true
 pygmentsUseClasses: false
 pygmentsUseClassic: false
-pygmentsStyle: "tango"
+pygmentsStyle: "gruvbox"
 
 imaging:
   resampleFilter: "CatmullRom"
