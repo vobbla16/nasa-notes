@@ -40,8 +40,9 @@ jobs:
         run: sudo snap install dart-sass-embedded
       - name: Install PostCSS
         run: |
-          sudo npm install -g postcss-cli autoprefixer
-          npm install postcss -D
+          npm install -g postcss-cli
+          npm install autoprefixer
+          npm audit fix
       - name: Checkout
         uses: actions/checkout@v3
         with:
